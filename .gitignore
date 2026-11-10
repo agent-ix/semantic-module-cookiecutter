@@ -1,0 +1,7 @@
+target/
+*-target/
+.worktrees/
+node_modules/
+__pycache__/
+*.pyc
+.render/
