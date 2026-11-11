@@ -11,7 +11,7 @@ paired_run:
   relation: equal
   minimum_pairs: 1
 relationships:
-  - target: "ix://{{ cookiecutter.org }}/{{ cookiecutter.repo_name }}/FR-004"
+  - target: "ix://{{ cookiecutter.org }}/{{ cookiecutter.repo_name }}/NFR-002-M-1"
     type: "measures"
 ---
 
@@ -32,15 +32,19 @@ keyed by the `schema` dimension.
 
 The first six bytes of the SHA-256 of the emitted file, read as an unsigned
 big-endian integer (exact in a double), definition `schema.emission-digest-v1`.
-Equal digests across the pair mean the bytes agreed; a differing digest means
-they did not.
+A differing digest proves the bytes differ. Equal 48-bit prefixes are strong
+but not conclusive evidence that the bytes agreed (a collision is possible), so
+the full SHA-256 is kept in `rawEvidence` and the producer's own byte check
+decides its exit status.
 
 ## Collection Procedure
 
 `node scripts/measure-schema-emission.mjs --record` emits twice, each in a
-fresh process, and records one collection per emission.
+fresh process and its own working directory, the second after the wall-clock
+second has changed, and records one collection per emission.
 
 ## Interpretation
 
-The two collections are compared by the measurement tooling under the plan's
-`equal` relation. A pair that compared no schema is inconclusive, never zero.
+The two collections are to be compared by the measurement tooling under the
+plan's `equal` relation; until it exposes that comparison the pair is recorded
+but no verdict is computed. A pair that compared no schema is inconclusive, never zero.

@@ -35,13 +35,26 @@ check_kind() { # kind "extra cookiecutter args" expected-schemas...
   if [ "${SKIP_NPM:-}" != 1 ]; then
     (cd "$repo" && npm install --no-audit --no-fund >/dev/null \
       && node scripts/emit-schemas.mjs \
-      && node scripts/emit-schemas.mjs --check)
+      && node scripts/emit-schemas.mjs --check \
+      && node scripts/measure-schema-emission.mjs)
     for schema in "$@"; do
       [ -f "$repo/spec_objects_example/schemas/$schema.json" ] \
         || { echo "FAIL $kind: $schema.json not emitted" >&2; exit 1; }
     done
     if command -v quire >/dev/null; then
-      (cd "$repo" && quire validate --scope . "spec/**/*.md")
+      local log
+      log="$(mktemp)"
+      if ! (cd "$repo" && quire validate --scope . "spec/**/*.md") >"$log" 2>&1; then
+        cat "$log" >&2
+        if grep -q "paired_run" "$log"; then
+          echo "FAIL $kind: the installed engineering-assurance rejects paired_run on" >&2
+          echo "  MP-001; it needs a release that includes MeasurementPlan paired_run" >&2
+          echo "  (newer than 0.8.1). Update engineering-assurance; the plan is not changed." >&2
+        fi
+        rm -f "$log"
+        exit 1
+      fi
+      rm -f "$log"
     fi
   fi
   echo "ok $kind"

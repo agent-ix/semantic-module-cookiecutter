@@ -10,3 +10,4 @@ okf_version: "0.1"
 ## Contents
 
 - [NFR-001: Verification without skips](./NFR-001-verification-without-skips.md)
+- [NFR-002: Schema emission is deterministic](./NFR-002-deterministic-emission.md)

@@ -97,6 +97,7 @@ verification exists to prevent.
 ### Non-Functional Requirements
 
 - [NFR-001](./non-functional/NFR-001-verification-without-skips.md) — the suite fails rather than skips when a tool is absent.
+- [NFR-002](./non-functional/NFR-002-deterministic-emission.md) — two schema emissions differ in no bytes.
 
 ## References
 
