@@ -9,6 +9,7 @@ skeletons, extraction mappings. There is no runtime here.
 
 - `make bootstrap` — install the toolchain and emit `schemas/`.
 - `make gate` — the green bar: spec validation, lint, schema drift check, tests.
+- `make measure-emission` — emit twice and record the pair as a paired-run measurement (MP-001); fails when the emissions differ.
 - `make semantic-install` — npm ci for the pinned TypeSpec toolchain and semantic-core.
 
 ## Rules a change here must not break

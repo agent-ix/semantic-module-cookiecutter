@@ -92,6 +92,7 @@ verification exists to prevent.
 - [FR-001](./functional/FR-001-declare-the-semantic-contract.md) — the manifest declares the contract and references each schema by path.
 - [FR-002](./functional/FR-002-emit-schemas-deterministically.md) — schemas are emitted from the TypeSpec source, reproducibly.
 - [FR-003](./functional/FR-003-authoring-forms-and-fixtures.md) — the authoring forms are demonstrated and their refusals are exercised.
+- [FR-004](./functional/FR-004-measure-emission-determinism.md) — emission determinism is measured as a paired run, not asserted.
 
 ### Non-Functional Requirements
 
