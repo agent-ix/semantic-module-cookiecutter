@@ -45,6 +45,6 @@ second has changed, and records one collection per emission.
 
 ## Interpretation
 
-The two collections are to be compared by the measurement tooling under the
-plan's `equal` relation; until it exposes that comparison the pair is recorded
-but no verdict is computed. A pair that compared no schema is inconclusive, never zero.
+`quoin measurement verify --plan MP-001` (quoin >= 0.30.1) compares the two
+collections under the plan's `equal` relation: no differing schema accepts, a
+differing schema rejects, and a single collection is inconclusive. A pair that compared no schema is inconclusive, never zero.

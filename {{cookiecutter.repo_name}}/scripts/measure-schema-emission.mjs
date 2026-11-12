@@ -3,9 +3,10 @@
 //
 // Emits the schemas twice, each time in a fresh process with its own scratch
 // directory, and writes one measurement collection per emission. The two are
-// then compared by the measurement tooling under the plan's `equal` relation;
-// this script computes no paired verdict. It only gates its own exit status on
-// a byte-for-byte check.
+// then compared by `quoin measurement verify --plan MP-001` (quoin >= 0.30.1)
+// under the plan's `equal` relation, which decides accept, reject or
+// inconclusive. This script's own exit status, from a byte-for-byte check, is
+// its direct local signal.
 //
 // The two emissions are made as unlike as a deterministic emitter allows: each
 // runs from its own empty working directory with TMPDIR pointing there, and the

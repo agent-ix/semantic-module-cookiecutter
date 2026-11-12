@@ -17,8 +17,9 @@ wall-clock second, compares the two emissions
 byte for byte, and records each emission as one measurement collection under a
 `MeasurementPlan` that states a `paired_run` relation of `equal`. Whether the
 two emissions agree is therefore a count that the measurement tooling computes
-from the two collections once it exposes that comparison; the producer asserts
-no paired verdict of its own and gates only its exit status on the byte check.
+from the two collections (`quoin measurement verify --plan MP-001`, quoin
+>= 0.30.1); the producer asserts no paired verdict of its own, and its exit
+status on the byte check is its direct local signal.
 
 ## Inputs
 
