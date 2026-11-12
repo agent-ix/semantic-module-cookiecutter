@@ -80,6 +80,10 @@ help = "Emit {{ cookiecutter.package_name }}/schemas/ from typespec/main.tsp"
 cmd = "node scripts/emit-schemas.mjs --check"
 help = "Fail when the committed schemas differ from the source"
 
+[tool.poe.tasks.measure-emission]
+cmd = "node scripts/measure-schema-emission.mjs --record"
+help = "Emit twice and record the pair as a paired-run measurement (MP-001)"
+
 [tool.poe.tasks.lint]
 sequence = ["ruff-check", "black-check", "schemas-check"]
 help = "ruff, black, and the schema drift gate"

@@ -24,6 +24,7 @@ help:
 	@echo "Schemas"
 	@echo "  make schemas        - emit {{ cookiecutter.package_name }}/schemas/ from typespec/main.tsp"
 	@echo "  make schemas-check  - fail on schema drift"
+	@echo "  make measure-emission - emit twice, record the pair (MP-001); fails if they differ"
 	@echo ""
 	@echo "Build"
 	@echo "  make build          - build the Python distribution"
@@ -94,6 +95,10 @@ schemas:
 .PHONY: schemas-check
 schemas-check:
 	$(POE) schemas-check
+
+.PHONY: measure-emission
+measure-emission:
+	$(POE) measure-emission
 
 # =============================================================================
 # Build

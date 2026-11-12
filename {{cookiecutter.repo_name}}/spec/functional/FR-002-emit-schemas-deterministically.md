@@ -48,4 +48,4 @@ any drift between the source and the committed bytes.
 ## Dependencies
 
 - **Upstream**: [FR-001](./FR-001-declare-the-semantic-contract.md)
-- **Downstream**: [FR-003](./FR-003-authoring-forms-and-fixtures.md)
+- **Downstream**: [FR-003](./FR-003-authoring-forms-and-fixtures.md), [FR-004](./FR-004-measure-emission-determinism.md)

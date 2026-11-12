@@ -9,6 +9,7 @@
 //
 //   node scripts/emit-schemas.mjs           write the package's schemas/
 //   node scripts/emit-schemas.mjs --check   write nothing; exit 1 on any drift
+//   node scripts/emit-schemas.mjs --print   write nothing; print {file: text} as JSON
 //
 // Node built-ins only, zero dependencies.
 import { execFileSync } from "node:child_process";
@@ -216,6 +217,10 @@ function main() {
   const check = process.argv.includes("--check");
   try {
     const rendered = emit();
+    if (process.argv.includes("--print")) {
+      process.stdout.write(JSON.stringify(Object.fromEntries(rendered)));
+      return 0;
+    }
     if (check) {
       const problems = drift(rendered);
       if (problems.length > 0) {
